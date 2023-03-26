@@ -1,0 +1,17 @@
+<div class="flex flex-col">
+  <h2>{{ movie?.title }}</h2>
+
+  <video
+    class="video"
+    [src]="movie?.trailerUrl"
+    controls
+    autoplay
+    [poster]="movie?.thumbnailUrl"
+  ></video>
+
+  <div class="flex gap-4">
+    <p>{{ movie?.releaseYear }}</p>
+    <p>{{ movie?.ageRating }}</p>
+    <p>{{ movie?.duration }} minutes</p>
+  </div>
+</div>

@@ -1,0 +1,127 @@
+<div class="upload-test flex flex-1 flex-col items-center">
+  <h1>Upload Test</h1>
+  <div class="form-control w-full max-w-xs">
+    <label class="label">
+      <span class="label-text">Movie Title</span>
+    </label>
+    <input
+      type="text"
+      [(ngModel)]="movie.title"
+      class="input input-bordered w-full max-w-xs"
+    />
+  </div>
+
+  <div class="form-control w-full max-w-xs">
+    <label class="label">
+      <span class="label-text">Movie Description</span>
+    </label>
+    <input
+      type="text"
+      [(ngModel)]="movie.description"
+      class="input input-bordered w-full max-w-xs"
+    />
+  </div>
+
+  <div class="form-control w-full max-w-xs">
+    <label class="label">
+      <span class="label-text">Release Year</span>
+    </label>
+    <input
+      type="number"
+      minlength="4"
+      maxlength="4"
+      [(ngModel)]="movie.releaseYear"
+      class="input input-bordered w-full max-w-xs"
+    />
+  </div>
+
+  <div class="form-control w-full max-w-xs">
+    <label class="label">
+      <span class="label-text">Duration (Minutes)</span>
+    </label>
+    <input
+      type="number"
+      minlength="3"
+      maxlength="3"
+      [(ngModel)]="movie.duration"
+      class="input input-bordered w-full max-w-xs"
+    />
+  </div>
+
+  <div class="form-control w-full max-w-xs">
+    <label class="label">
+      <span class="label-text">Rating (1 to 10)</span>
+    </label>
+    <input
+      type="number"
+      minlength="1"
+      maxlength="1"
+      [(ngModel)]="movie.rating"
+      class="input input-bordered w-full max-w-xs"
+    />
+  </div>
+
+  <div class="form-control w-full max-w-xs">
+    <label class="label">
+      <span class="label-text">Age Rating</span>
+    </label>
+    <select class="select select-bordered" [(ngModel)]="movie.ageRating">
+      <option disabled selected>Select Age Rating</option>
+      <option value="A">Adult</option>
+      <option value="U/A">U/A</option>
+      <option value="U">Universal</option>
+    </select>
+  </div>
+
+  <div class="form-control w-full max-w-xs">
+    <label class="label">
+      <span class="label-text">Category</span>
+    </label>
+    <select
+      [disabled]="loading"
+      class="select select-bordered"
+      [(ngModel)]="movie.category"
+    >
+      <option disabled selected>Select Category</option>
+      <option *ngFor="let category of categories" [value]="category._id">
+        {{ category.name }}
+      </option>
+    </select>
+  </div>
+
+  <div class="form-control w-full max-w-xs">
+    <label class="label">
+      <span class="label-text">Thumbnail</span>
+    </label>
+    <p *ngIf="uploading.thumbnail">Thumbnail getting uploaded</p>
+    <img
+      *ngIf="movie.thumbnailUrl"
+      [src]="movie.thumbnailUrl"
+      alt="Thumbnail"
+    />
+    <input
+      *ngIf="!movie.thumbnailUrl"
+      type="file"
+      accept="image/*"
+      (change)="onFileChange($event, 'thumbnail')"
+      class="file-input file-input-bordered w-full max-w-xs"
+    />
+  </div>
+
+  <div class="form-control w-full max-w-xs">
+    <label class="label">
+      <span class="label-text">Trailer</span>
+    </label>
+    <p *ngIf="uploading.trailer">Trailer getting uploaded</p>
+    <video *ngIf="movie.trailerUrl" [src]="movie.trailerUrl" controls></video>
+    <input
+      *ngIf="!movie.trailerUrl"
+      type="file"
+      accept="video/*"
+      (change)="onFileChange($event, 'trailer')"
+      class="file-input file-input-bordered w-full max-w-xs"
+    />
+  </div>
+  <p *ngIf="error">{{ error }}</p>
+  <button class="btn" (click)="addMovie()">Submit</button>
+</div>

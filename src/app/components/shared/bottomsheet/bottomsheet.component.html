@@ -1,0 +1,30 @@
+<div class="bottom-sheet flex flex-col">
+  <div class="flex">
+    <div class="bottom-sheet--poster">
+      <img
+        [src]="movie?.thumbnailUrl"
+        alt="{{ movie?.title }}"
+        (click)="openSingleMoviePage()"
+      />
+    </div>
+    <div class="bottom-sheet--details">
+      <h2 class="bottom-sheet--details--title">{{ movie?.title }}</h2>
+      <div class="flex gap-4">
+        <p class="bottom-sheet--details--year">{{ movie?.releaseYear }}</p>
+        <p class="bottom-sheet--details--rating">{{ movie?.ageRating }}</p>
+        <p class="bottom-sheet--details--duration">
+          {{ movie?.duration }} minutes
+        </p>
+      </div>
+      <p class="bottom-sheet--details--description">{{ movie?.description }}</p>
+      <p class="bottom-sheet--details--genre">
+        {{ movie?.rating }}
+      </p>
+    </div>
+    <div class="close-btn">
+      <button mat-icon-button>
+        <mat-icon>close</mat-icon>
+      </button>
+    </div>
+  </div>
+</div>

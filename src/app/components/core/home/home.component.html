@@ -1,0 +1,32 @@
+<div class="categories--container flex flex-col items-start">
+  <h2 *ngIf="loading">Loading...</h2>
+
+  <div
+    class="categories--category-item py-4"
+    *ngFor="let category of categories"
+  >
+    <h2 class="category-item--name">{{ category.name }}</h2>
+
+    <div class="movies-loading" *ngIf="category.loading">Movies loading</div>
+
+    <div *ngIf="!category.loading" class="movies-list flex flex-nowrap">
+      <div class="movie" *ngFor="let movie of category.movies">
+        <div
+          class="movie--details cursor-pointer"
+          (click)="openBottomSheet(movie)"
+        >
+          <img
+            class="movie--details--poster"
+            [src]="movie.thumbnailUrl"
+            alt="{{ movie.title }}"
+          />
+          <h3 class="movie--details--title">{{ movie.title }}</h3>
+        </div>
+      </div>
+
+      <div *ngIf="category.movies?.length === 0" class="no-movies">
+        No movies found
+      </div>
+    </div>
+  </div>
+</div>

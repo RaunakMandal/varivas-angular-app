@@ -1,0 +1,21 @@
+.bottom-sheet {
+  &--poster {
+    height: 100%;
+    width: 100%;
+  }
+
+  &--details {
+    margin-left: 16px;
+    &--title {
+      font-size: 1.5rem;
+      font-weight: 500;
+      margin-bottom: 0.5rem;
+    }
+
+    &--description {
+      font-size: 1rem;
+      font-weight: 400;
+      margin-bottom: 0.5rem;
+    }
+  }
+}
