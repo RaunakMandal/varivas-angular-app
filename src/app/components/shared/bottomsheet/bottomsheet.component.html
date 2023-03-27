@@ -1,30 +1,48 @@
 <div class="bottom-sheet flex flex-col">
-  <div class="flex">
-    <div class="bottom-sheet--poster">
-      <img
-        [src]="movie?.thumbnailUrl"
-        alt="{{ movie?.title }}"
-        (click)="openSingleMoviePage()"
-      />
+  <div class="bottom-sheet--movie flex">
+    <div class="bottom-sheet--movie--poster">
+      <img [src]="movie?.thumbnailUrl" alt="{{ movie?.title }}" />
     </div>
-    <div class="bottom-sheet--details">
-      <h2 class="bottom-sheet--details--title">{{ movie?.title }}</h2>
-      <div class="flex gap-4">
-        <p class="bottom-sheet--details--year">{{ movie?.releaseYear }}</p>
-        <p class="bottom-sheet--details--rating">{{ movie?.ageRating }}</p>
-        <p class="bottom-sheet--details--duration">
-          {{ movie?.duration }} minutes
+    <div class="bottom-sheet--movie--details flex flex-col gap-2 ml-4">
+      <h2 class="bottom-sheet--movie--details--title">{{ movie?.title }}</h2>
+      <div class="bottom-sheet--movie--details--sub-details flex gap-4">
+        <p>{{ movie?.releaseYear }}</p>
+        <p>{{ movie?.ageRating }}</p>
+        <p>
+          {{ getDurationFromMinutes(movie?.duration) }}
         </p>
       </div>
-      <p class="bottom-sheet--details--description">{{ movie?.description }}</p>
-      <p class="bottom-sheet--details--genre">
-        {{ movie?.rating }}
+      <p class="bottom-sheet--movie--details--description">
+        {{ truncateDescription(movie?.description) }}
       </p>
+      <span
+        class="bottom-sheet--movie--details--rating"
+        *ngIf="movie!.rating > 8"
+      >
+        <div class="badge badge-most-liked">
+          <mat-icon class="icon-favorite">favorite</mat-icon>
+          <span class="ml-1">Most Liked</span>
+        </div>
+      </span>
     </div>
-    <div class="close-btn">
-      <button mat-icon-button>
-        <mat-icon>close</mat-icon>
-      </button>
+    <mat-icon class="icon-close cursor-pointer" (click)="closeBottomSheet()"
+      >close</mat-icon
+    >
+  </div>
+  <div class="icons-container flex justify-between p-4 pb-0">
+    <div class="tooltip" data-tip="Play">
+      <mat-icon class="icon icon-play" (click)="openSingleMoviePage()"
+        >play_arrow</mat-icon
+      >
+    </div>
+    <div class="tooltip" data-tip="Download">
+      <mat-icon class="icon icon-download">download</mat-icon>
+    </div>
+    <div class="tooltip" data-tip="Share">
+      <mat-icon class="icon icon-share">share</mat-icon>
+    </div>
+    <div class="tooltip" data-tip="Favorite">
+      <mat-icon class="icon icon-favorite">favorite</mat-icon>
     </div>
   </div>
 </div>

@@ -64,8 +64,6 @@ export class HomeComponent implements OnInit {
   }
 
   openBottomSheet(movie: Movie): void {
-    console.log(movie);
-
     this.bottomSheet.open(BottomsheetComponent, {
       data: {
         movie,

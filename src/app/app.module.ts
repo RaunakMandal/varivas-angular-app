@@ -13,6 +13,7 @@ import { BottomsheetComponent } from './components/shared/bottomsheet/bottomshee
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { MatBottomSheetModule } from '@angular/material/bottom-sheet';
 import { MatIconModule } from '@angular/material/icon';
+import { BottomNavComponent } from './components/shared/bottom-nav/bottom-nav.component';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import { MatIconModule } from '@angular/material/icon';
     AddMovieComponent,
     NavigationComponent,
     BottomsheetComponent,
+    BottomNavComponent,
   ],
   imports: [
     BrowserModule,

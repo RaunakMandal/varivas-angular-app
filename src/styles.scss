@@ -10,3 +10,15 @@ body {
   margin: 0;
   font-family: Roboto, 'Helvetica Neue', sans-serif;
 }
+
+.mat-bottom-sheet-container {
+  min-width: auto !important;
+  max-width: 500px !important;
+  padding: 16px !important;
+  background-color: #242b2e !important;
+}
+
+.mat-icon {
+  height: auto !important;
+  width: auto !important;
+}

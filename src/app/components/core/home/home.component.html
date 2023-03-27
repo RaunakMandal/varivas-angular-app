@@ -1,26 +1,27 @@
-<div class="categories--container flex flex-col items-start">
+<div class="categories--container flex flex-col p-4 pl-6 pr-0">
   <h2 *ngIf="loading">Loading...</h2>
 
   <div
-    class="categories--category-item py-4"
+    class="categories--category-item mb-4"
     *ngFor="let category of categories"
   >
-    <h2 class="category-item--name">{{ category.name }}</h2>
+    <h2 class="category-item--name text-xl">{{ category.name }}</h2>
 
     <div class="movies-loading" *ngIf="category.loading">Movies loading</div>
 
-    <div *ngIf="!category.loading" class="movies-list flex flex-nowrap">
-      <div class="movie" *ngFor="let movie of category.movies">
-        <div
-          class="movie--details cursor-pointer"
-          (click)="openBottomSheet(movie)"
-        >
-          <img
-            class="movie--details--poster"
-            [src]="movie.thumbnailUrl"
-            alt="{{ movie.title }}"
-          />
-          <h3 class="movie--details--title">{{ movie.title }}</h3>
+    <div
+      *ngIf="!category.loading"
+      class="movies-list flex gap-2 mt-2 overflow-x-auto"
+    >
+      <div
+        class="movie--details cursor-pointer"
+        (click)="openBottomSheet(movie)"
+        *ngFor="let movie of category.movies"
+      >
+        <div class="card card-side bg-base-100 shadow-xl">
+          <figure>
+            <img src="{{ movie.thumbnailUrl }}" alt="{{ movie.title }}" />
+          </figure>
         </div>
       </div>
 

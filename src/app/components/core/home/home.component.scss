@@ -1,21 +1,5 @@
-.categories {
-  &--container {
-    padding: 26px;
-  }
-}
-
-.movie {
-  &--details {
-    padding: 16px;
-
-    &--title {
-      font-size: 18px;
-      font-weight: 600;
-      margin-bottom: 8px;
-    }
-
-    &--poster {
-      height: 150px;
-    }
-  }
+figure {
+  border-radius: 0;
+  min-width: 120px;
+  max-width: 150px;
 }
