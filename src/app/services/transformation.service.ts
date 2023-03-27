@@ -8,7 +8,7 @@ export class TransformationService {
 
   truncateDescription(description?: string): string {
     if ((description?.length as number) > 150) {
-      return description?.substring(0, 150) + '...';
+      return description?.substring(0, 150) as string;
     } else {
       return description as string;
     }

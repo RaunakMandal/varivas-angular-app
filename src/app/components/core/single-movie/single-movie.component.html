@@ -1,17 +1,56 @@
-<div class="flex flex-col">
-  <h2>{{ movie?.title }}</h2>
+<div class="flex p-4 single-movie-container-wrapper justify-center">
+  <div class="flex flex-col single-movie-container">
+    <span
+      class="btn-back flex flex-shrink mb-2 cursor-pointer"
+      (click)="goBack()"
+    >
+      <mat-icon class="icon icon-go-back"> arrow_back </mat-icon>
+      <span class="ml-2">Go Back</span>
+    </span>
+    <div class="single-movie-container--player">
+      <span class="single-movie-container--player--type">Trailer</span>
+      <video
+        class="single-movie-container--player--video video"
+        [src]="movie?.trailerUrl"
+        controls
+        [poster]="movie?.thumbnailUrl"
+      ></video>
+    </div>
 
-  <video
-    class="video"
-    [src]="movie?.trailerUrl"
-    controls
-    autoplay
-    [poster]="movie?.thumbnailUrl"
-  ></video>
-
-  <div class="flex gap-4">
-    <p>{{ movie?.releaseYear }}</p>
-    <p>{{ movie?.ageRating }}</p>
-    <p>{{ movie?.duration }} minutes</p>
+    <div class="flex flex-col gap-2 mt-4 single-movie-container--details">
+      <p class="text-2xl bold">{{ movie?.title }} (Trailer)</p>
+      <p class="text-l">
+        {{ truncateDescription(movie?.description || '') }}
+      </p>
+      <div class="more-details-wrapper">
+        <div class="flex gap-4">
+          <p class="text-xl bold">{{ movie?.releaseYear }}</p>
+          <p class="text-xl bold">{{ movie?.ageRating }}</p>
+          <p class="text-xl bold">
+            {{ getDurationFromMinutes(movie?.duration) }}
+          </p>
+        </div>
+        <span class="badge-most-liked-wrapper" *ngIf="(movie?.rating || 0) > 8">
+          <div class="badge badge-most-liked mt-2">
+            <mat-icon class="icon-favorite">favorite</mat-icon>
+            <span class="ml-1">Most Liked</span>
+          </div>
+        </span>
+      </div>
+      <div class="icons-container flex justify-between p-4 pb-0">
+        <div class="tooltip" data-tip="Play">
+          <mat-icon class="icon icon-play">play_arrow</mat-icon>
+        </div>
+        <div class="tooltip" data-tip="Download">
+          <mat-icon class="icon icon-download">download</mat-icon>
+        </div>
+        <div class="tooltip" data-tip="Share">
+          <mat-icon class="icon icon-share">share</mat-icon>
+        </div>
+        <div class="tooltip" data-tip="Favorite">
+          <mat-icon class="icon icon-favorite">favorite</mat-icon>
+        </div>
+      </div>
+    </div>
   </div>
 </div>

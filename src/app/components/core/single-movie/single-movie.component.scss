@@ -1,0 +1,78 @@
+.single-movie-container-wrapper {
+  .single-movie-container {
+    .btn-back {
+      width: fit-content;
+      padding: 10px;
+      border-radius: 4px;
+      background-color: #000;
+      color: #fff;
+
+      &:hover {
+        background-color: #fff;
+        color: #000;
+      }
+    }
+
+    &--player {
+      position: relative;
+
+      &--type {
+        position: absolute;
+        top: 0;
+        left: 0;
+
+        padding: 6px;
+        margin: 6px;
+        border-radius: 4px;
+        background-color: rgba(255, 255, 255, 0.7);
+        color: black;
+      }
+
+      &--video {
+        width: 100%;
+        max-height: 350px;
+        background-color: black;
+      }
+    }
+
+    &--details {
+      .more-details-wrapper {
+        .badge-most-liked-wrapper {
+          .badge-most-liked {
+            padding: 22px;
+            border-radius: 4px;
+            background-color: #000;
+            color: #fff;
+          }
+        }
+      }
+    }
+
+    .icons-container {
+      .icon {
+        font-size: 24px;
+        color: #fff;
+        cursor: pointer;
+
+        padding: 8px;
+        border-radius: 50%;
+        background-color: #000;
+
+        &:hover {
+          color: #000;
+          background-color: #fff;
+        }
+      }
+    }
+
+    .bold {
+      font-weight: bold;
+    }
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .single-movie-container {
+    width: 60%;
+  }
+}

@@ -1,14 +1,39 @@
-<div class="categories--container flex flex-col p-4 pl-6 pr-0">
-  <h2 *ngIf="loading">Loading...</h2>
+<div
+  class="loader flex flex-col h-full items-center justify-center"
+  *ngIf="loading"
+>
+  <ngx-skeleton-loader
+    count="1"
+    appearance="circle"
+    [theme]="{
+      'background-color': 'inherit',
+      border: '1px solid'
+    }"
+  ></ngx-skeleton-loader>
+  <h1 class="text-xl mt-4">Please wait while data is loaded...</h1>
+</div>
 
+<div *ngIf="!loading" class="categories--container flex flex-col p-4 pl-6 pr-0">
   <div
-    class="categories--category-item mb-4"
+    class="categories--container--category-item mb-4"
     *ngFor="let category of categories"
   >
-    <h2 class="category-item--name text-xl">{{ category.name }}</h2>
-
-    <div class="movies-loading" *ngIf="category.loading">Movies loading</div>
-
+    <h2 class="categories--container--category-item--name text-xl">
+      {{ category.name }}
+    </h2>
+    <ngx-skeleton-loader
+      *ngIf="category.loading"
+      count="5"
+      [theme]="{
+        'background-color': 'inherit',
+        border: '1px solid',
+        'border-radius': '0',
+        height: '100px',
+        width: '100px',
+        margin: '0 10px 0 0'
+      }"
+      class="mt-2"
+    ></ngx-skeleton-loader>
     <div
       *ngIf="!category.loading"
       class="movies-list flex gap-2 mt-2 overflow-x-auto"
@@ -25,8 +50,12 @@
         </div>
       </div>
 
-      <div *ngIf="category.movies?.length === 0" class="no-movies">
-        No movies found
+      <div
+        class="flex flex-col flex-1 items-center"
+        *ngIf="(category.movies || []).length === 0"
+      >
+        <img class="empty-state-img" src="assets/empty_state.jpg" />
+        <h2 class="text-l mt-4">No movies found</h2>
       </div>
     </div>
   </div>

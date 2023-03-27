@@ -17,7 +17,7 @@
       </p>
       <span
         class="bottom-sheet--movie--details--rating"
-        *ngIf="movie!.rating > 8"
+        *ngIf="(movie?.rating || 0) > 8"
       >
         <div class="badge badge-most-liked">
           <mat-icon class="icon-favorite">favorite</mat-icon>

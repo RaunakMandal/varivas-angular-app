@@ -35,7 +35,7 @@ export class BottomsheetComponent implements OnInit {
   }
 
   truncateDescription(description?: string): string {
-    return this.transformationService.truncateDescription(description);
+    return this.transformationService.truncateDescription(description) + '...';
   }
 
   getDurationFromMinutes(minutes?: number): string {
