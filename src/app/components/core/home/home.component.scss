@@ -1,7 +1,10 @@
 figure {
   border-radius: 0;
-  min-width: 120px;
-  max-width: 150px;
+  width: 150px;
+
+  img {
+    height: 250px;
+  }
 }
 
 .empty-state-img {

@@ -1,5 +1,5 @@
-<div class="upload-test flex flex-1 flex-col items-center">
-  <h1>Upload Test</h1>
+<div class="add-movie-container flex flex-1 flex-col items-center gap-2 mt-2">
+  <h2 class="text-2xl">Add New Movie</h2>
   <div class="form-control w-full max-w-xs">
     <label class="label">
       <span class="label-text">Movie Title</span>
@@ -27,8 +27,7 @@
     </label>
     <input
       type="number"
-      minlength="4"
-      maxlength="4"
+      max="2023"
       [(ngModel)]="movie.releaseYear"
       class="input input-bordered w-full max-w-xs"
     />
@@ -92,12 +91,18 @@
     <label class="label">
       <span class="label-text">Thumbnail</span>
     </label>
-    <p *ngIf="uploading.thumbnail">Thumbnail getting uploaded</p>
-    <img
+    <div
       *ngIf="movie.thumbnailUrl"
-      [src]="movie.thumbnailUrl"
-      alt="Thumbnail"
-    />
+      class="indicator flex justify-center img-thumbnail-wrapper"
+    >
+      <span
+        class="indicator-item badge badge-primary cursor-pointer"
+        (click)="removeAttachment('thumbnail')"
+      >
+        <mat-icon class="icon icon-close">close</mat-icon>
+      </span>
+      <img class="img-thumbnail" [src]="movie.thumbnailUrl" alt="Thumbnail" />
+    </div>
     <input
       *ngIf="!movie.thumbnailUrl"
       type="file"
@@ -111,8 +116,23 @@
     <label class="label">
       <span class="label-text">Trailer</span>
     </label>
-    <p *ngIf="uploading.trailer">Trailer getting uploaded</p>
-    <video *ngIf="movie.trailerUrl" [src]="movie.trailerUrl" controls></video>
+    <div
+      *ngIf="movie.trailerUrl"
+      class="indicator flex justify-center img-thumbnail-wrapper"
+    >
+      <span
+        class="indicator-item badge badge-primary cursor-pointer"
+        (click)="removeAttachment('trailer')"
+      >
+        <mat-icon class="icon icon-close">close</mat-icon>
+      </span>
+      <video
+        class="movie-trailer"
+        *ngIf="movie.trailerUrl"
+        [src]="movie.trailerUrl"
+        controls
+      ></video>
+    </div>
     <input
       *ngIf="!movie.trailerUrl"
       type="file"
@@ -121,6 +141,31 @@
       class="file-input file-input-bordered w-full max-w-xs"
     />
   </div>
-  <p *ngIf="error">{{ error }}</p>
-  <button class="btn" (click)="addMovie()">Submit</button>
+  <div class="alert alert-error shadow-lg w-2/3 self-center" *ngIf="error">
+    <div>
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        class="stroke-current flex-shrink-0 h-6 w-6"
+        fill="none"
+        viewBox="0 0 24 24"
+        (click)="error = ''"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z"
+        />
+      </svg>
+      <span>{{ error }}</span>
+    </div>
+  </div>
+
+  <button
+    class="btn"
+    [ngClass]="{ 'loading btn-disabled': loading }"
+    (click)="addMovie()"
+  >
+    Submit
+  </button>
 </div>

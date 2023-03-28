@@ -12,4 +12,8 @@ export class MovieService {
   getMoviesByCategory(categoryId: string): Observable<ApiResponse> {
     return this.apiService.get('movies/' + categoryId);
   }
+
+  addNewMovie(movie: any): Observable<ApiResponse> {
+    return this.apiService.post('movies/create', movie);
+  }
 }

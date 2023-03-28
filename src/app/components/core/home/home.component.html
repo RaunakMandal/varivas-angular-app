@@ -6,14 +6,7 @@
     class="loading flex flex-col items-center justify-center"
     *ngIf="loading"
   >
-    <ngx-skeleton-loader
-      count="1"
-      appearance="circle"
-      [theme]="{
-        'background-color': 'inherit',
-        border: '1px solid'
-      }"
-    ></ngx-skeleton-loader>
+    <progress class="progress w-56"></progress>
     <h1 class="text-xl mt-4">Please wait while data is loaded...</h1>
   </span>
 
@@ -31,22 +24,10 @@
     class="categories--container--category-item mb-4"
     *ngFor="let category of categories"
   >
-    <h2 class="categories--container--category-item--name text-xl">
+    <h2 class="categories--container--category-item--name text-xl font-bold">
       {{ category.name }}
     </h2>
-    <ngx-skeleton-loader
-      *ngIf="category.loading"
-      count="5"
-      [theme]="{
-        'background-color': 'inherit',
-        border: '1px solid',
-        'border-radius': '0',
-        height: '100px',
-        width: '100px',
-        margin: '0 10px 0 0'
-      }"
-      class="mt-2"
-    ></ngx-skeleton-loader>
+    <progress *ngIf="category.loading" class="progress w-56"></progress>
     <div
       *ngIf="!category.loading"
       class="movies-list flex gap-2 mt-2 overflow-x-auto"
@@ -67,8 +48,8 @@
         class="flex flex-col flex-1 items-center"
         *ngIf="(category.movies || []).length === 0"
       >
-        <img class="empty-state-img" src="assets/empty_state.jpg" />
-        <h2 class="text-l mt-4">No movies found</h2>
+        <img class="empty-state-img" src="assets/error_state.webp" />
+        <h2 class="text-l mt-4">No movies found for: {{ category.name }}</h2>
       </div>
     </div>
   </div>

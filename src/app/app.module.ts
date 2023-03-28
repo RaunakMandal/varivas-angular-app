@@ -13,8 +13,6 @@ import { BottomsheetComponent } from './components/shared/bottomsheet/bottomshee
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { MatBottomSheetModule } from '@angular/material/bottom-sheet';
 import { MatIconModule } from '@angular/material/icon';
-import { BottomNavComponent } from './components/shared/bottom-nav/bottom-nav.component';
-import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
 import { AddPageComponent } from './components/core/add-page/add-page.component';
 import { AddCategoryComponent } from './components/shared/add-category/add-category.component';
 
@@ -26,7 +24,6 @@ import { AddCategoryComponent } from './components/shared/add-category/add-categ
     AddMovieComponent,
     NavigationComponent,
     BottomsheetComponent,
-    BottomNavComponent,
     AddPageComponent,
     AddCategoryComponent,
   ],
@@ -38,7 +35,6 @@ import { AddCategoryComponent } from './components/shared/add-category/add-categ
     NoopAnimationsModule,
     MatBottomSheetModule,
     MatIconModule,
-    NgxSkeletonLoaderModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

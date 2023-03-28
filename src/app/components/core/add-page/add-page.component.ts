@@ -9,7 +9,7 @@ export class AddPageComponent implements AfterViewInit {
   constructor() {}
 
   element: HTMLElement | null = null;
-  currentTab: string = 'category';
+  currentTab: string = 'movie';
 
   setCurrentTab(tab: string) {
     // Remove active class from the previous tab

@@ -1,0 +1,9 @@
+.add-category-container {
+  .category-name {
+    &--p {
+      &:hover {
+        background-color: #f5f5f5;
+      }
+    }
+  }
+}

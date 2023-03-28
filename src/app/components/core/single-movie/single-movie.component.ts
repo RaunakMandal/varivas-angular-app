@@ -20,10 +20,6 @@ export class SingleMovieComponent implements OnInit {
     return this.transformationService.getDurationFromMinutes(minutes);
   }
 
-  truncateDescription(description: string): string {
-    return description;
-  }
-
   goBack(): void {
     this.router.navigate(['/']);
   }

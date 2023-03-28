@@ -22,6 +22,12 @@ export class AddCategoryComponent implements OnInit {
   success: boolean = false;
 
   addCategory() {
+    if (this.categoryName === '') {
+      this.error.error = true;
+      this.error.message = 'Category name cannot be empty';
+      return;
+    }
+
     this.loading = true;
     this.error.error = false;
     this.success = false;
@@ -30,10 +36,11 @@ export class AddCategoryComponent implements OnInit {
       .addCategory(this.categoryName)
       .pipe(
         catchError((err: HttpErrorResponse) => {
-          console.log(err);
-
           this.error.error = true;
           this.error.message = err.error.error;
+
+          this.loading = false;
+
           return [];
         }),
         map((res: ApiResponse) => {

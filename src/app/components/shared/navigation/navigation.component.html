@@ -1,10 +1,12 @@
-<div class="navbar bg-slate-800">
+<div class="navbar bg-base-300">
   <div class="navbar-start">
     <a class="btn btn-ghost normal-case text-xl" [routerLink]="['/']"
       >Varivas</a
     >
   </div>
   <div class="navbar-end">
-    <a class="btn" [routerLink]="['/add']">Add New</a>
+    <span class="btn btn-outline" [routerLink]="['/add']">
+      <mat-icon class="icon icon-plus">add</mat-icon>
+    </span>
   </div>
 </div>

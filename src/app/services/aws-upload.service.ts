@@ -45,31 +45,6 @@ export class AwsUploadService {
     });
   }
 
-  removeObject(params: Params): Promise<any> {
-    return new Promise((resolve, reject) => {
-      this.s3Client
-        .send(new DeleteObjectCommand(params))
-        .then((data) => {
-          resolve(data);
-        })
-        .catch((err) => {
-          reject(err);
-        });
-    });
-  }
-
-  deleteFile = (key: string, type: string) => {
-    const params: Params = {
-      Bucket: environment.SPACES_BUCKET,
-      Key: `${
-        type === 'thumbnail'
-          ? environment.SPACES_THUMBNAIL_FOLDER
-          : environment.SPACES_TRAILER_FOLDER
-      }/${key}`,
-    };
-    return this.removeObject(params);
-  };
-
   uploadFile = (file: File, type: string) => {
     const params: Params = {
       Bucket: environment.SPACES_BUCKET,
@@ -77,7 +52,7 @@ export class AwsUploadService {
         type === 'thumbnail'
           ? environment.SPACES_THUMBNAIL_FOLDER
           : environment.SPACES_TRAILER_FOLDER
-      }/${file.name}`,
+      }/${file.name.trim()}`,
       Body: file,
       ACL: environment.SPACES_ACL,
       ContentType: file.type,
