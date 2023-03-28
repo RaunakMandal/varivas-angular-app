@@ -12,4 +12,8 @@ export class CategoryService {
   getCategories(): Observable<ApiResponse> {
     return this.apiService.get('categories');
   }
+
+  addCategory(categoryName: string): Observable<ApiResponse> {
+    return this.apiService.post('categories/create', { name: categoryName });
+  }
 }

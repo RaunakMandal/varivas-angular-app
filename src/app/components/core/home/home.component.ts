@@ -1,5 +1,7 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { MatBottomSheet } from '@angular/material/bottom-sheet';
+import { catchError, Observable } from 'rxjs';
 import { ApiError } from 'src/app/models/api-error.model';
 import { ApiResponse } from 'src/app/models/api-response.model';
 import { Category } from 'src/app/models/category.model';
@@ -28,19 +30,19 @@ export class HomeComponent implements OnInit {
 
   categories: Category[] = [];
 
-  moviesLoading: boolean = true;
-
   fetchCategoryWiseMovies(categoryId: string): void {
     this.movieService
       .getMoviesByCategory(categoryId)
+      .pipe(
+        catchError((error: HttpErrorResponse) => {
+          this.error = {
+            error: true,
+            message: error.message,
+          };
+          throw error;
+        })
+      )
       .subscribe((response: ApiResponse) => {
-        this.moviesLoading = false;
-
-        if (response.error) {
-          this.error = response.error;
-          return;
-        }
-
         this.categories.forEach((category: Category) => {
           if (category._id === categoryId) {
             category.movies = response.data;
@@ -51,20 +53,26 @@ export class HomeComponent implements OnInit {
   }
 
   fetchCategories(): void {
-    this.categoryService.getCategories().subscribe((response: ApiResponse) => {
-      this.loading = false;
-
-      if (response.error) {
-        this.error = response.error;
-        return;
-      }
-
-      this.categories = response.data.map((category: Category) => {
-        category.loading = true;
-        this.fetchCategoryWiseMovies(category._id as string);
-        return category;
+    this.categoryService
+      .getCategories()
+      .pipe(
+        catchError((error: HttpErrorResponse) => {
+          this.loading = false;
+          this.error = {
+            error: true,
+            message: error.message,
+          };
+          throw error;
+        })
+      )
+      .subscribe((response: ApiResponse) => {
+        this.loading = false;
+        this.categories = response.data.map((category: Category) => {
+          category.loading = true;
+          this.fetchCategoryWiseMovies(category._id as string);
+          return category;
+        });
       });
-    });
   }
 
   openBottomSheet(movie: Movie): void {

@@ -1,0 +1,60 @@
+<div class="upload-test flex flex-1 flex-col items-center gap-2">
+  <div class="form-control w-full max-w-xs">
+    <label class="label">
+      <span class="label-text">Category Name</span>
+    </label>
+    <input
+      type="text"
+      [(ngModel)]="categoryName"
+      class="input input-bordered w-full max-w-xs"
+    />
+  </div>
+  <div class="alert alert-success shadow-lg w-2/3 self-center" *ngIf="success">
+    <div>
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        class="stroke-current flex-shrink-0 h-6 w-6"
+        fill="none"
+        viewBox="0 0 24 24"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+        />
+      </svg>
+      <span>Category added successfulyy...</span>
+    </div>
+  </div>
+  <div
+    class="alert alert-error shadow-lg w-2/3 self-center"
+    *ngIf="error.error"
+  >
+    <div>
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        class="stroke-current flex-shrink-0 h-6 w-6"
+        fill="none"
+        viewBox="0 0 24 24"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z"
+        />
+      </svg>
+      <span>{{ error.message }}</span>
+    </div>
+  </div>
+  <button class="btn" (click)="addCategory()">Submit</button>
+
+  <div class="divider w-2/3 self-center"></div>
+  <div class="flex flex-col items-center categories">
+    <h1 class="text-2xl mb-2">All Categories</h1>
+    <ul class="category" *ngFor="let category of existingCategories">
+      <li class="category-name">{{ category.name }}</li>
+    </ul>
+  </div>
+</div>

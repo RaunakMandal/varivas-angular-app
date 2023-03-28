@@ -15,6 +15,8 @@ import { MatBottomSheetModule } from '@angular/material/bottom-sheet';
 import { MatIconModule } from '@angular/material/icon';
 import { BottomNavComponent } from './components/shared/bottom-nav/bottom-nav.component';
 import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
+import { AddPageComponent } from './components/core/add-page/add-page.component';
+import { AddCategoryComponent } from './components/shared/add-category/add-category.component';
 
 @NgModule({
   declarations: [
@@ -25,6 +27,8 @@ import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
     NavigationComponent,
     BottomsheetComponent,
     BottomNavComponent,
+    AddPageComponent,
+    AddCategoryComponent,
   ],
   imports: [
     BrowserModule,

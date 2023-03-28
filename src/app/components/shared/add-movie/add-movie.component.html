@@ -15,11 +15,10 @@
     <label class="label">
       <span class="label-text">Movie Description</span>
     </label>
-    <input
-      type="text"
+    <textarea
+      class="textarea textarea-bordered"
       [(ngModel)]="movie.description"
-      class="input input-bordered w-full max-w-xs"
-    />
+    ></textarea>
   </div>
 
   <div class="form-control w-full max-w-xs">
@@ -54,8 +53,8 @@
     </label>
     <input
       type="number"
-      minlength="1"
-      maxlength="1"
+      min="1"
+      max="10"
       [(ngModel)]="movie.rating"
       class="input input-bordered w-full max-w-xs"
     />
