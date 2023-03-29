@@ -8,6 +8,7 @@
       type="text"
       [(ngModel)]="movie.title"
       class="input input-bordered w-full max-w-xs"
+      [ngClass]="{ 'input-disabled': loading }"
     />
   </div>
 
@@ -18,6 +19,7 @@
     <textarea
       class="textarea textarea-bordered"
       [(ngModel)]="movie.description"
+      [ngClass]="{ 'input-disabled': loading }"
     ></textarea>
   </div>
 
@@ -30,6 +32,7 @@
       max="2023"
       [(ngModel)]="movie.releaseYear"
       class="input input-bordered w-full max-w-xs"
+      [ngClass]="{ 'input-disabled': loading }"
     />
   </div>
 
@@ -43,6 +46,7 @@
       maxlength="3"
       [(ngModel)]="movie.duration"
       class="input input-bordered w-full max-w-xs"
+      [ngClass]="{ 'input-disabled': loading }"
     />
   </div>
 
@@ -56,6 +60,7 @@
       max="10"
       [(ngModel)]="movie.rating"
       class="input input-bordered w-full max-w-xs"
+      [ngClass]="{ 'input-disabled': loading }"
     />
   </div>
 
@@ -63,7 +68,11 @@
     <label class="label">
       <span class="label-text">Age Rating</span>
     </label>
-    <select class="select select-bordered" [(ngModel)]="movie.ageRating">
+    <select
+      class="select select-bordered"
+      [(ngModel)]="movie.ageRating"
+      [ngClass]="{ 'select-disabled': loading }"
+    >
       <option disabled selected>Select Age Rating</option>
       <option value="A">Adult</option>
       <option value="U/A">U/A</option>
@@ -76,9 +85,9 @@
       <span class="label-text">Category</span>
     </label>
     <select
-      [disabled]="loading"
       class="select select-bordered"
       [(ngModel)]="movie.category"
+      [ngClass]="{ 'select-disabled': loading }"
     >
       <option disabled selected>Select Category</option>
       <option *ngFor="let category of categories" [value]="category._id">
