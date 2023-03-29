@@ -21,8 +21,7 @@ This repo contains the files/codes for the Varivas Varivas Frontend App. It is b
 4. Now run the app with `ng serve` and it should be accessible at `http://localhost:4200`
 
 ### Run the Deployed App
-
-### [Netlify App Link]('https://varivas-frontend.netlify.app')
+### [Netlify App Link](https://varivas-frontend.netlify.app)
 
 ### Dependencies
 
