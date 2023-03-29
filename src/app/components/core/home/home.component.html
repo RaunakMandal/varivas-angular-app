@@ -37,10 +37,11 @@
         (click)="openBottomSheet(movie)"
         *ngFor="let movie of category.movies"
       >
-        <div class="card card-side bg-base-100 shadow-xl">
+        <div class="card card-side bg-base-100 flex flex-col items-start">
           <figure>
             <img src="{{ movie.thumbnailUrl }}" alt="{{ movie.title }}" />
           </figure>
+          <p class="text-center text-base">{{ movie.title }}</p>
         </div>
       </div>
 
